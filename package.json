@@ -1,0 +1,25 @@
+{
+  "name": "anydoor",
+  "version": "1.0.0",
+  "description": "Nodejs Static Web server",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0scarecrow0/anydoor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/0scarecrow0/anydoor/issues"
+  },
+  "homepage": "https://github.com/0scarecrow0/anydoor#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "pre-commit": "^1.2.2"
+  }
+}
