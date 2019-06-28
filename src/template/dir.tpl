@@ -10,8 +10,5 @@
     {{#each files}}
         <a href="{{../dir}}/{{this}}">{{this}}</a>
     {{/each}}
-    <p>{{root}}——root</p>
-    <p>{{fpath}}——filePath</p>
-    <p>{{dir}}——Dir</p>
 </body>
 </html>

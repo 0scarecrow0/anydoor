@@ -36,8 +36,6 @@ module.exports=async function(req,res,filePath){
                 // 应该加上根路径
                 // 当我们访问根路径的时候path.relative()会给我们返回空字符串，所以用三木判断
                 files,
-                root:config.root,
-                fpath:filePath,
             }
             res.end(tempalte(data))
         }
