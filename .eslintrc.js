@@ -26,7 +26,7 @@ module.exports = {
 			'single'
         ],
         "no-console":["error",{ // 不允许写console
-                "allow":["warn","error","info"]
+                "allow":["warn","error","info","log"]
                 // 但是可以写console.warn,error,info
             }
         ]
