@@ -5,8 +5,8 @@ const HandLebars=require('handlebars')
 const promisify = require('util').promisify
 const stat=promisify(fs.stat)
 const readdir=promisify(fs.readdir)
-const config=require('../config/defaultConfig')
-
+// const config=require('../config/defaultConfig')
+const compress=require('./compress')
 const tplPath=path.join(__dirname,'../template/dir.tpl')
 const css=path.join(__dirname,'../style/iconfont.js')
 // 处理路径的时候尽量使用绝对路径，__dirname锚点是个绝对路径，表示这个文件所在的文件夹
@@ -19,15 +19,33 @@ const tempalte=HandLebars.compile(source.toString())
 // 因为readFile读取Buffer对象比较快，所以在读取后再进行转换
 
 const mime=require('./mime')
+const range=require('./range')
+const isFresh = require('./cache')
 
-module.exports=async function(req,res,filePath){
+module.exports=async function(req,res,filePath,config){
     try {
         const stats=await stat(filePath)
         if (stats.isFile()) {
             const contentType=mime(filePath)
-            res.statusCode=200;
             res.setHeader('Content-Type',contentType.name)
-            fs.createReadStream(filePath).pipe(res)
+            if (isFresh(stats,req,res)) {
+                res.statusCode=304;
+                res.end()
+                return
+            }
+            let rs;
+            const {code,start,end}=range(stats.size,req,res);
+            if (code===200) {
+                res.statusCode=200;
+                rs=fs.createReadStream(filePath)
+            } else {
+                res.statusCode=206;
+                rs=fs.createReadStream(filePath,{start , end})
+            }
+            if (filePath.match(config.compress)) {
+                rs=compress(rs,req,res)   
+            }
+            rs.pipe(res)
         }else if(stats.isDirectory()){
             const files=await readdir(filePath)
             res.statusCode=200;

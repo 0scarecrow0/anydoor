@@ -1,8 +1,11 @@
 {
-  "name": "anydoor",
+  "name": "xiaobai01",
   "version": "1.0.0",
   "description": "Nodejs Static Web server",
-  "main": "index.js",
+  "main": "src/app.js",
+  "bin":{
+      "xiaobai01":"bin/xiaobai01"
+  },
   "scripts": {
     "lint": "eslint .",
     "fix": "eslint --fix ."
@@ -24,10 +27,12 @@
   "devDependencies": {
     "babel-eslint": "^10.0.2",
     "eslint": "^6.0.1",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "yargs": "^13.2.4"
   },
   "dependencies": {
     "chalk": "^2.4.2",
-    "handlebars": "^4.1.2"
+    "handlebars": "^4.1.2",
+    "yargs": "^13.2.4"
   }
 }
