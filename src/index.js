@@ -6,7 +6,7 @@ const argv = yargs.usage('xiaobai01 [options]')
     .option('p',{
         alias:'port',       // 别名
         describe:'端口号',  // 描述
-        default:'6666'     // 默认值
+        default:'7899'     // 默认值
     })
     .option('h',{
         alias:'hostname',       // 别名
