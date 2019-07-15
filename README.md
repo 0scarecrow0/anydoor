@@ -9,7 +9,7 @@ npm i -g xiaobai01
 
 # 使用方法
 ```
-anydoor # 把当前文件夹做位静态资源服务器
+xiaobai01 # 把当前文件夹做位静态资源服务器
 
 xiaobai01 -p 1207 # 设置端口号为 1207
 
