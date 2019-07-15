@@ -1,6 +1,6 @@
 {
   "name": "xiaobai01",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Nodejs Static Web server",
   "main": "src/app.js",
   "bin":{

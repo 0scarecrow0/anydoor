@@ -8,7 +8,7 @@ const readdir=promisify(fs.readdir)
 // const config=require('../config/defaultConfig')
 const compress=require('./compress')
 const tplPath=path.join(__dirname,'../template/dir.tpl')
-const css=path.join(__dirname,'../style/iconfont.js')
+const csspath=path.join(__dirname,'../style/iconfont.js')
 // 处理路径的时候尽量使用绝对路径，__dirname锚点是个绝对路径，表示这个文件所在的文件夹
 const source=fs.readFileSync(tplPath)
 // 因为下面的东西要想工作，必须等待这个执行完成，所以在这里用同步的方法
@@ -52,11 +52,11 @@ module.exports=async function(req,res,filePath,config){
             res.setHeader('Content-Type','text/html')
             const Dir=path.relative(config.root,filePath) 
             // path.relative()方法用于获取从第一个参数进入到第二个参数的相对路径，当两个参数都为绝对路径，且不同盘时，返回第二个参数
-            const cssPath=path.relative(config.root,css)
+            // const cssPath=path.relative(config.root,css)
             const data={
                 title:path.basename(filePath),
                 dir:Dir?`/${Dir}`:'',
-                cssPath:cssPath?`/${cssPath}`:'',
+                cssPath:csspath,
                 // 应该加上根路径
                 // 当我们访问根路径的时候path.relative()会给我们返回空字符串，所以用三木判断
                 files:files.map((file)=>{
